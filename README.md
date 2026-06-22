@@ -3,7 +3,7 @@
 Personal academic website for **Matthew Szuromi** — plain HTML, CSS, and a little
 vanilla JavaScript. No build step, no frameworks, no dependencies to maintain.
 
-Live (once deployed): <https://mszuromi.github.io>
+Live at **<https://mattszuromi.com>** — hosted on Cloudflare Pages, auto-deployed from `main`. (The old GitHub Pages URL `mszuromi.github.io` may also still resolve.)
 
 ## Files
 
