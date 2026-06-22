@@ -13,8 +13,8 @@ Live at **<https://mattszuromi.com>** — hosted on Cloudflare Pages, auto-deplo
 | `research.html` | Research areas, each with its related publications. |
 | `cv.html` | Full CV — cosmic on screen, clean light for print; source for the PDF. |
 | `aboutme.html` | "About Me" — personal interests page. |
-| `styles.css` | Shared cosmic theme (dark, gold ink, serif) for every page. |
-| `script.js` | Mobile menu + footer year. |
+| `styles.css` | Shared theme for every page — dark "cosmic" + a light "Cajal ink-on-paper" mode (toggle). |
+| `script.js` | Theme toggle, mobile menu, footer year. |
 | `assets/favicon.svg` | "MS" monogram favicon. |
 | `assets/Matthew_Szuromi_CV.pdf` | Generated from `cv.html` (see below). |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is (skip Jekyll). |

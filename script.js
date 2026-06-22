@@ -2,6 +2,18 @@
 (function () {
   'use strict';
 
+  /* ---- Theme toggle (light / dark) ---- */
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      var mc = document.querySelector('meta[name="theme-color"]');
+      if (mc) mc.setAttribute('content', next === 'light' ? '#f1e7d0' : '#06050d');
+    });
+  }
+
   /* ---- Mobile navigation ---- */
   var navToggle = document.getElementById('nav-toggle');
   var nav = document.getElementById('nav');
