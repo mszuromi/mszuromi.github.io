@@ -192,15 +192,19 @@
   }
 
   function fire(i){
-    var n=neurons[i]; n.act=1; n.q=0; n.cool=R(130,210);
+    var n=neurons[i]; n.act=1; n.q=0; n.cool=R(70,130);
     for(var e=0;e<edges.length;e++){ var E=edges[e];
       if(E.a===i||E.b===i){ E.act=1; pending.push({to:(E.a===i?E.b:E.a), at:frame+Math.round(R(16,30))}); } }
   }
   function step(){
     frame++;
     for(var i=0;i<neurons.length;i++){ var n=neurons[i];
-      n.q += 0.0012+Math.random()*0.0009; if(n.act>0) n.act*=0.95; if(n.cool>0) n.cool--;
-      if(mouse.on){ var dx=n.x-mouse.x, dy=n.y-mouse.y, md=Math.sqrt(dx*dx+dy*dy); if(md<170) n.q+=(1-md/170)*0.025; }
+      n.q += 0.0002+Math.random()*0.0002; if(n.act>0) n.act*=0.95; if(n.cool>0) n.cool--;
+      if(mouse.on){
+        n.q += 0.0005;
+        var dx=n.x-mouse.x, dy=n.y-mouse.y, md=Math.sqrt(dx*dx+dy*dy);
+        if(md<190){ var f=1-md/190; n.q += f*f*0.12; }
+      }
       if(n.q>=1 && n.cool<=0) fire(i);
     }
     for(var e=0;e<edges.length;e++) if(edges[e].act>0) edges[e].act*=0.9;
