@@ -216,3 +216,11 @@ p{margin:0 0 16px}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
 }
+
+/* research: subtopics + inline citations */
+.topic-list{margin:0;padding-left:1.15em;display:grid;gap:15px}
+.topic-list>li{color:var(--cream)}
+.topic-list>li::marker{color:var(--gold)}
+.cite{margin:6px 0 0;color:var(--muted);font-size:.98rem;line-height:1.45}
+.cite em{font-style:italic}
+.cite a{display:inline-flex;align-items:center;gap:3px;color:var(--gold);white-space:nowrap}
