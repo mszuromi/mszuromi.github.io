@@ -331,7 +331,13 @@
   }
   function loop(){ step(); draw(); requestAnimationFrame(loop); }
 
-  window.addEventListener('resize', layout);
+  var _rt, _lw=window.innerWidth, _lh=window.innerHeight;
+  window.addEventListener('resize', function(){
+    var w=window.innerWidth, h=window.innerHeight;
+    if(w===_lw && Math.abs(h-_lh)<140) return;
+    clearTimeout(_rt);
+    _rt=setTimeout(function(){ _lw=window.innerWidth; _lh=window.innerHeight; layout(); }, 220);
+  });
   window.addEventListener('mousemove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.on=true; mouse.t=frame; });
   window.addEventListener('mouseout', function(){ mouse.on=false; });
   window.addEventListener('click', function(e){
