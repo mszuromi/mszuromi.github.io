@@ -16,7 +16,7 @@
   --line:rgba(226,184,120,.16);
   --line-strong:rgba(226,184,120,.34);
   --on-accent:#241803;
-  --header-bg:rgba(6,5,13,.55);
+  --header-bg:rgba(6,5,13,.74);
   --footer-bg:rgba(0,0,0,.35);
   --font-display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body:'EB Garamond', Georgia, 'Times New Roman', serif;
@@ -38,7 +38,7 @@
   --line:rgba(120,80,40,.22);
   --line-strong:rgba(120,80,40,.40);
   --on-accent:#f4ecd9;
-  --header-bg:rgba(241,231,208,.62);
+  --header-bg:rgba(241,231,208,.82);
   --footer-bg:rgba(120,84,40,.06);
   color-scheme:light;
 }
@@ -94,8 +94,8 @@ a:hover{color:var(--gold-strong)}
 .brand{font-family:var(--font-display);font-weight:600;font-size:1.42rem;letter-spacing:.01em;color:var(--cream)}
 .brand:hover{color:var(--cream)}
 .nav{margin-left:auto;display:flex;gap:6px}
-.nav a{font-family:var(--font-body);color:var(--muted);font-size:1.08rem;letter-spacing:.01em;padding:6px 14px;border-radius:6px;transition:color .2s,background .2s}
-.nav a:hover{color:var(--cream);background:rgba(226,184,120,.06)}
+.nav a{font-family:var(--font-body);color:var(--cream);font-size:1.08rem;letter-spacing:.01em;padding:6px 14px;border-radius:6px;transition:color .2s,background .2s}
+.nav a:hover{color:var(--gold-strong);background:rgba(226,184,120,.1)}
 .nav a.active{color:var(--gold)}
 .header-actions{display:flex;align-items:center;gap:6px}
 .icon-btn{display:grid;place-items:center;width:42px;height:42px;padding:0;background:transparent;color:var(--cream);border:1px solid transparent;border-radius:8px;cursor:pointer;transition:background .15s,color .15s}
