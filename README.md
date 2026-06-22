@@ -9,10 +9,12 @@ Live (once deployed): <https://mszuromi.github.io>
 
 | File | What it is |
 |------|------------|
-| `index.html` | The main one-page site (About, Research, Publications, CV). |
+| `index.html` | Home / About page. |
+| `research.html` | Research areas, each with its related publications. |
 | `cv.html` | Full CV — also the source for the downloadable PDF. |
-| `styles.css` | All styles for `index.html` (light + dark themes). |
-| `script.js` | Theme toggle, mobile menu, active-section highlighting. |
+| `personality.html` | Personal interests page. |
+| `styles.css` | Shared styles for every page (light + dark themes). |
+| `script.js` | Theme toggle + mobile menu. |
 | `assets/favicon.svg` | "MS" monogram favicon. |
 | `assets/Matthew_Szuromi_CV.pdf` | Generated from `cv.html` (see below). |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is (skip Jekyll). |
@@ -20,11 +22,15 @@ Live (once deployed): <https://mszuromi.github.io>
 ## Editing content
 
 Everything is hand-editable text — open the `.html` files and change the words.
+The header/nav is duplicated in each page (no build step); if you change a nav
+link, update it in `index.html`, `research.html`, `personality.html`, and the
+toolbar in `cv.html`.
 
-- **Bio / About:** the `<section id="about">` block in `index.html`.
-- **Research:** the three `<article class="card">` blocks in `index.html`.
-- **Publications:** the `<ol class="pubs">` list in `index.html`, and the matching
-  list in `cv.html`.
+- **Bio / About:** the `<section class="hero">` block in `index.html`.
+- **Research areas + their publications:** the `<article class="card">` blocks in
+  `research.html` — each paper lives inside the area it belongs to.
+- **CV:** `cv.html` (then regenerate the PDF — see below).
+- **Personality:** `personality.html`.
 - **Colors / fonts:** the `:root` variables at the top of `styles.css`.
 
 ### Add a real headshot

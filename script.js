@@ -50,28 +50,7 @@
     });
   }
 
-  /* ---- Active section in nav ---- */
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
-  var byId = {};
-  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
-  var sections = links
-    .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
-    .filter(Boolean);
-
-  if ('IntersectionObserver' in window && sections.length) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var link = byId[entry.target.id];
-        if (!link) return;
-        if (entry.isIntersecting) {
-          links.forEach(function (l) { l.classList.remove('active'); l.removeAttribute('aria-current'); });
-          link.classList.add('active');
-          link.setAttribute('aria-current', 'true');
-        }
-      });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    sections.forEach(function (s) { observer.observe(s); });
-  }
+  /* (Active nav tab is set per-page in the markup for this multi-page site.) */
 
   /* ---- Footer year ---- */
   var yearEl = document.getElementById('year');

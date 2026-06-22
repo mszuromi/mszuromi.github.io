@@ -36,15 +36,23 @@
 
     .toolbar {
       max-width: 820px; margin: 0 auto; padding: 18px clamp(16px, 4vw, 24px) 0;
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
     }
-    .toolbar a, .toolbar button {
+    .toolbar button {
       font-family: var(--font-sans); font-size: .9rem; font-weight: 600;
       color: var(--text); background: var(--paper); border: 1px solid var(--border);
       border-radius: 9px; padding: 8px 14px; cursor: pointer; text-decoration: none;
       transition: border-color .15s, color .15s;
     }
-    .toolbar a:hover, .toolbar button:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    .toolbar button:hover { border-color: var(--accent); color: var(--accent); }
+    .cv-nav { display: flex; flex-wrap: wrap; gap: 2px; margin-left: -8px; }
+    .cv-nav a {
+      font-family: var(--font-sans); font-size: .92rem; font-weight: 600;
+      color: var(--muted); padding: 8px 12px; border-radius: 8px; text-decoration: none;
+      transition: color .15s, background .15s;
+    }
+    .cv-nav a:hover { color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+    .cv-nav a.current { color: var(--accent); }
 
     .page {
       max-width: 820px; margin: 16px auto 60px; background: var(--paper);
@@ -131,7 +139,12 @@
 </head>
 <body>
   <div class="toolbar no-print">
-    <a href="index.html">← Back to site</a>
+    <nav class="cv-nav" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="cv.html" class="current" aria-current="page">CV</a>
+      <a href="personality.html">Personality</a>
+    </nav>
     <button type="button" onclick="window.print()">Print / Save as PDF</button>
   </div>
 
@@ -213,7 +226,7 @@
       <div class="entry">
         <div class="when">2023 – Present</div>
         <div class="what">
-          <h3>Chu–Kramer Lab — Boston University &amp; Johns Hopkins</h3>
+          <h3>BRAIN Dynamics Lab — Johns Hopkins University</h3>
           <p class="org">Advisors: Dr. Catherine Chu &amp; Dr. Mark Kramer</p>
           <ul>
             <li>Developing a machine-learning approach to detect hippocampal sharp-wave ripples in human stereo-EEG recordings</li>
