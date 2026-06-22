@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Matthew Szuromi — concept: Living Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#05060a; --text:#eef2fb; --muted:#9aa6bd; --cyan:#4ef0ff; --violet:#9a7bff; --line:#1b2030; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden}
+  #net{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0}
+  .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 90% at 18% 32%, rgba(5,6,10,.86) 0%, rgba(5,6,10,.55) 38%, rgba(5,6,10,.15) 70%, transparent 100%)}
+  .page{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column}
+  header{display:flex;align-items:center;justify-content:space-between;padding:26px clamp(24px,5vw,64px)}
+  .brand{font-family:'Space Grotesk';font-weight:600;font-size:1.15rem;display:flex;align-items:center;gap:11px}
+  .brand i{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:.8rem;font-style:normal;color:#05060a;font-weight:700;
+    background:linear-gradient(135deg,var(--cyan),var(--violet))}
+  nav a{font-family:'JetBrains Mono';color:var(--muted);text-decoration:none;margin-left:22px;font-size:.85rem;transition:color .2s}
+  nav a:hover{color:var(--text)} nav a.on{color:var(--cyan)}
+  .hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(24px,5vw,64px);max-width:1180px}
+  .eyebrow{font-family:'JetBrains Mono';color:var(--muted);font-size:.82rem;letter-spacing:.06em;margin-bottom:20px}
+  .eyebrow b{color:var(--cyan);font-weight:500}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(3.2rem,9vw,7rem);line-height:.93;letter-spacing:-.035em;margin-bottom:22px}
+  .lede{font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.45;max-width:30ch;color:#d4dcec;margin-bottom:34px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{font-family:'Space Grotesk';font-weight:600;font-size:1rem;padding:15px 30px;border-radius:12px;text-decoration:none;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .b1{color:#05060a;background:linear-gradient(135deg,var(--cyan),var(--violet))}
+  .b2{color:var(--text);border:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .hint{margin-top:40px;font-family:'JetBrains Mono';font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:9px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.3)}}
+  @media (prefers-reduced-motion: reduce){.dot{animation:none}}
+</style>
+</head>
+<body>
+  <canvas id="net"></canvas>
+  <div class="veil"></div>
+  <div class="page">
+    <header>
+      <div class="brand"><i>MS</i> Matthew Szuromi</div>
+      <nav>
+        <a class="on" href="../index.html">Home</a>
+        <a href="../research.html">Research</a>
+        <a href="../cv.html">CV</a>
+        <a href="../aboutme.html">About&nbsp;Me</a>
+      </nav>
+    </header>
+    <section class="hero">
+      <div class="eyebrow"><b>//</b> theoretical &amp; computational neuroscience</div>
+      <h1>Matthew<br>Szuromi</h1>
+      <p class="lede">I use mathematics and theoretical physics to understand how neural systems compute, learn, and break down.</p>
+      <div class="btns">
+        <a class="btn b1" href="mailto:mszuromi@bu.edu">Get in touch</a>
+        <a class="btn b2" href="../research.html">Read my research</a>
+      </div>
+      <div class="hint"><span class="dot"></span> move your cursor through the network — or click to stimulate it</div>
+    </section>
+  </div>
+
+<script>
+(function(){
+  var cvs=document.getElementById('net'), ctx=cvs.getContext('2d');
+  var W,H,DPR, N=92, LINK=150, nodes=[], pulses=[];
+  var mouse={x:-9999,y:-9999,on:false};
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function R(a,b){return a+Math.random()*(b-a);}
+  function resize(){
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=cvs.clientWidth=window.innerWidth; H=cvs.clientHeight=window.innerHeight;
+    cvs.width=W*DPR; cvs.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function init(){
+    nodes=[];
+    for(var i=0;i<N;i++) nodes.push({x:R(0,W),y:R(0,H),vx:R(-.16,.16),vy:R(-.16,.16),q:R(0,.6),fire:0,cool:0});
+  }
+  function fire(n){
+    n.fire=1; n.q=0; n.cool=70;
+    for(var j=0;j<nodes.length;j++){
+      var m=nodes[j]; if(m===n) continue;
+      var dx=m.x-n.x, dy=m.y-n.y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<LINK && pulses.length<260) pulses.push({a:n,b:m,t:0,sp:0.018+Math.random()*0.02});
+    }
+  }
+  function step(){
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<0||n.x>W) n.vx*=-1; if(n.y<0||n.y>H) n.vy*=-1;
+      n.x=Math.max(0,Math.min(W,n.x)); n.y=Math.max(0,Math.min(H,n.y));
+      n.q += 0.0016 + Math.random()*0.0014;
+      if(n.fire>0) n.fire*=0.92;
+      if(n.cool>0) n.cool--;
+      if(mouse.on){
+        var mdx=n.x-mouse.x, mdy=n.y-mouse.y, md=Math.sqrt(mdx*mdx+mdy*mdy);
+        if(md<140) n.q += (1-md/140)*0.05;
+      }
+      if(n.q>=1 && n.cool<=0) fire(n);
+    }
+    for(var p=pulses.length-1;p>=0;p--){
+      var P=pulses[p]; P.t+=P.sp;
+      if(P.t>=1){ P.b.q += 0.55; pulses.splice(p,1); }
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#05060a'; ctx.fillRect(0,0,W,H);
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        var a=nodes[i], b=nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.sqrt(dx*dx+dy*dy);
+        if(d<LINK){
+          var al=(1-d/LINK)*0.16;
+          ctx.strokeStyle='rgba(125,145,185,'+al+')'; ctx.lineWidth=1;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    ctx.globalCompositeOperation='lighter';
+    for(var p=0;p<pulses.length;p++){
+      var P=pulses[p], x=P.a.x+(P.b.x-P.a.x)*P.t, y=P.a.y+(P.b.y-P.a.y)*P.t;
+      ctx.fillStyle='rgba(78,240,255,0.9)';
+      ctx.beginPath(); ctx.arc(x,y,2.1,0,6.2832); ctx.fill();
+    }
+    for(var k=0;k<nodes.length;k++){
+      var n=nodes[k];
+      if(n.fire>0.05){
+        ctx.fillStyle='rgba(78,240,255,'+(n.fire*0.5)+')';
+        ctx.beginPath(); ctx.arc(n.x,n.y,9+n.fire*10,0,6.2832); ctx.fill();
+      }
+    }
+    ctx.globalCompositeOperation='source-over';
+    for(var m=0;m<nodes.length;m++){
+      var nn=nodes[m];
+      var f=nn.fire;
+      ctx.fillStyle = f>0.05 ? 'rgba('+Math.round(150+105*f)+','+Math.round(170+70*f)+',255,1)' : 'rgba(150,170,205,0.85)';
+      ctx.beginPath(); ctx.arc(nn.x,nn.y,2.1+f*2.4,0,6.2832); ctx.fill();
+    }
+  }
+  function loop(){ step(); draw(); requestAnimationFrame(loop); }
+
+  window.addEventListener('resize', function(){ resize(); init(); });
+  window.addEventListener('mousemove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.on=true; });
+  window.addEventListener('mouseout', function(){ mouse.on=false; });
+  window.addEventListener('click', function(e){
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i], dx=n.x-e.clientX, dy=n.y-e.clientY;
+      if(Math.sqrt(dx*dx+dy*dy)<170 && n.cool<=0) fire(n);
+    }
+  });
+  cvs.addEventListener('touchmove', function(e){ var t=e.touches[0]; if(t){ mouse.x=t.clientX; mouse.y=t.clientY; mouse.on=true; } }, {passive:true});
+
+  resize(); init();
+  if(reduce){ step(); draw(); } else { loop(); }
+})();
+</script>
+</body>
+</html>
