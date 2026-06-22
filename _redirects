@@ -1,3 +1,0 @@
-# Cloudflare Pages redirects.
-# Send www.mattszuromi.com → the apex (canonical) domain, preserving the path.
-https://www.mattszuromi.com/* https://mattszuromi.com/:splat 301
