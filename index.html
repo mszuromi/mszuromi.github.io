@@ -218,16 +218,20 @@
     return {segs:segs,bb:bb,soma:'stel',sc:scale};
   }
   function sprite(ar, glow, ink, bright){
-    var bb=ar.bb, pad=glow?24:9, w=(bb.mxx-bb.mnx)+pad*2, h=(bb.mxy-bb.mny)+pad*2;
+    var bb=ar.bb, pad=glow?12:9, w=(bb.mxx-bb.mnx)+pad*2, h=(bb.mxy-bb.mny)+pad*2;
     var c=document.createElement('canvas'); c.width=Math.ceil(w*SS); c.height=Math.ceil(h*SS);
     var g=c.getContext('2d'); g.scale(SS,SS); g.translate(pad-bb.mnx, pad-bb.mny); g.lineCap='round'; g.lineJoin='round';
-    if(glow){ g.shadowColor='rgba('+bright+',.9)'; g.shadowBlur=8; }
     for(var i=0;i<ar.segs.length;i++){ var s=ar.segs[i];
-      var al = glow?0.8:Math.max(.26,Math.min(.78,.3+s.w*.24));
-      g.strokeStyle='rgba('+(glow?bright:ink)+','+al+')'; g.lineWidth=s.w*(glow?1.8:1);
-      g.beginPath(); g.moveTo(s.x1,s.y1); g.quadraticCurveTo(s.cx,s.cy,s.x2,s.y2); g.stroke();
+      g.beginPath(); g.moveTo(s.x1,s.y1); g.quadraticCurveTo(s.cx,s.cy,s.x2,s.y2);
+      if(glow){
+        g.strokeStyle='rgba('+bright+',0.2)'; g.lineWidth=s.w*3.4; g.stroke();
+        g.strokeStyle='rgba('+bright+',0.9)'; g.lineWidth=s.w*1.5; g.stroke();
+      } else {
+        var al=Math.max(.26,Math.min(.78,.3+s.w*.24));
+        g.strokeStyle='rgba('+ink+','+al+')'; g.lineWidth=s.w; g.stroke();
+      }
     }
-    g.shadowBlur=0; var sc=ar.sc;
+    var sc=ar.sc;
     g.fillStyle='rgba('+bright+',1)';
     if(ar.soma==='pyr'){ g.beginPath(); g.moveTo(0,-4.4*sc); g.lineTo(3.5*sc,3.2*sc); g.lineTo(-3.5*sc,3.2*sc); g.closePath(); g.fill(); }
     else { g.beginPath(); g.arc(0,0,3*sc,0,6.2832); g.fill(); }
@@ -246,9 +250,9 @@
       g.fillStyle='rgba('+tone+','+a+')'; g.beginPath(); g.arc(x,y,r,0,6.2832); g.fill(); }
     return c;
   }
-  function layout(){
-    fit(); frame=0; neb=buildNebula();
-    neurons=[]; edges=[]; pending=[]; stars=[];
+  var built=false;
+  function genNeurons(){
+    neurons=[];
     var L=[
       {y0:0.00,y1:0.085,t:'stel',n:Math.round(W/180)+2,sc:[.32,.5]},
       {y0:0.11,y1:0.33, t:'pyr', n:Math.round(W/80),   sc:[.5,.72], ap:[0.10,0.18]},
@@ -260,16 +264,23 @@
       for(var k=0;k<ly.n;k++){
         var sc=R(ly.sc[0],ly.sc[1]);
         var ar = ly.t==='pyr' ? pyramidal(sc, R(ly.ap[0],ly.ap[1])*H) : stellate(sc);
-        neurons.push({x:R(0.03,0.99)*W, y:R(ly.y0,ly.y1)*H, base:sprite(ar,false,GOLD,WGOLD), glow:sprite(ar,true,GOLD,WGOLD),
+        var nx=R(0.03,0.99), ny=R(ly.y0,ly.y1);
+        neurons.push({nx:nx, ny:ny, x:nx*W, y:ny*H, base:sprite(ar,false,GOLD,WGOLD), glow:sprite(ar,true,GOLD,WGOLD),
           q:R(0,.6), act:0, cool:0, dim:0.45+sc*0.45, type:'e', fcol:WGOLD});
       }
     }
     var nI=Math.round(neurons.length*0.22);
     for(var ii=0;ii<nI;ii++){
       var isc=R(.4,.62), iar=stellate(isc);
-      neurons.push({x:R(0.04,0.98)*W, y:R(0.12,0.9)*H, base:sprite(iar,false,INH,WINH), glow:sprite(iar,true,INH,WINH),
+      var inx=R(0.04,0.98), iny=R(0.12,0.9);
+      neurons.push({nx:inx, ny:iny, x:inx*W, y:iny*H, base:sprite(iar,false,INH,WINH), glow:sprite(iar,true,INH,WINH),
         q:R(0,.6), act:0, cool:0, dim:0.72+isc*0.32, type:'i', fcol:WINH});
     }
+    for(var z=0;z<4;z++){ var zi=Math.floor(Math.random()*neurons.length); neurons[zi].q=R(.96,1); neurons[zi].cool=R(0,45); }
+    built=true;
+  }
+  function buildEdges(){
+    edges=[]; pending=[];
     for(var i=0;i<neurons.length;i++){
       var d=[];
       for(var j=0;j<neurons.length;j++) if(j!==i){ var dx=neurons[j].x-neurons[i].x, dy=neurons[j].y-neurons[i].y; d.push({j:j,d2:dx*dx+dy*dy}); }
@@ -282,8 +293,14 @@
         }
       }
     }
-    for(var s=0;s<46;s++) stars.push({x:R(0,W),y:R(0,H),r:R(.4,1.2),ph:R(0,6.28)});
-    for(var z=0;z<4;z++){ var zi=Math.floor(Math.random()*neurons.length); neurons[zi].q=R(.96,1); neurons[zi].cool=R(0,45); }
+  }
+  function layout(){
+    fit();
+    if(!built) genNeurons();
+    else { for(var i=0;i<neurons.length;i++){ var n=neurons[i]; n.x=n.nx*W; n.y=n.ny*H; } }
+    neb=buildNebula();
+    buildEdges();
+    stars=[]; for(var s=0;s<46;s++) stars.push({x:R(0,W),y:R(0,H),r:R(.4,1.2),ph:R(0,6.28)});
     bake();
   }
   function bake(){
