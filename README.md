@@ -12,7 +12,7 @@ Live (once deployed): <https://mszuromi.github.io>
 | `index.html` | Home / About page. |
 | `research.html` | Research areas, each with its related publications. |
 | `cv.html` | Full CV — also the source for the downloadable PDF. |
-| `personality.html` | Personal interests page. |
+| `aboutme.html` | "About Me" — personal interests page. |
 | `styles.css` | Shared styles for every page (light + dark themes). |
 | `script.js` | Theme toggle + mobile menu. |
 | `assets/favicon.svg` | "MS" monogram favicon. |
@@ -23,14 +23,14 @@ Live (once deployed): <https://mszuromi.github.io>
 
 Everything is hand-editable text — open the `.html` files and change the words.
 The header/nav is duplicated in each page (no build step); if you change a nav
-link, update it in `index.html`, `research.html`, `personality.html`, and the
+link, update it in `index.html`, `research.html`, `aboutme.html`, and the
 toolbar in `cv.html`.
 
 - **Bio / About:** the `<section class="hero">` block in `index.html`.
 - **Research areas + their publications:** the `<article class="card">` blocks in
   `research.html` — each paper lives inside the area it belongs to.
 - **CV:** `cv.html` (then regenerate the PDF — see below).
-- **Personality:** `personality.html`.
+- **About Me:** `aboutme.html`.
 - **Colors / fonts:** the `:root` variables at the top of `styles.css`.
 
 ### Add a real headshot
