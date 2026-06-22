@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Szuromi — Curriculum Vitae</title>
+  <meta name="description" content="Curriculum vitae of Matthew Szuromi, PhD student in computational and theoretical neuroscience at Boston University." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --bg: #f4f2ec; --paper: #ffffff; --text: #1b1f24; --muted: #5c6671;
+      --border: #e2ded5; --accent: #2f4bd0; --accent-soft: #eef1fd;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1216; --paper: #161b22; --text: #e7eaee; --muted: #99a2ad;
+        --border: #262d37; --accent: #8aa1f6; --accent-soft: #1a2438;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font-sans); font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .toolbar {
+      max-width: 820px; margin: 0 auto; padding: 18px clamp(16px, 4vw, 24px) 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .toolbar a, .toolbar button {
+      font-family: var(--font-sans); font-size: .9rem; font-weight: 600;
+      color: var(--text); background: var(--paper); border: 1px solid var(--border);
+      border-radius: 9px; padding: 8px 14px; cursor: pointer; text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .toolbar a:hover, .toolbar button:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    .page {
+      max-width: 820px; margin: 16px auto 60px; background: var(--paper);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: clamp(28px, 5vw, 56px);
+      box-shadow: 0 18px 50px -28px rgba(0,0,0,.3);
+    }
+
+    /* Header */
+    .cv-head { border-bottom: 2px solid var(--accent); padding-bottom: 18px; margin-bottom: 26px; }
+    .cv-head h1 {
+      font-family: var(--font-serif); font-weight: 600; font-size: clamp(2rem, 5vw, 2.7rem);
+      letter-spacing: -.02em; margin: 0; line-height: 1.05;
+    }
+    .cv-head .subtitle { color: var(--accent); font-weight: 600; margin: 6px 0 12px; letter-spacing: .01em; }
+    .contact { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .92rem; color: var(--muted); margin: 0; }
+    .contact a { color: var(--muted); }
+    .contact a:hover { color: var(--accent); }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .links a {
+      font-size: .82rem; font-weight: 600; color: var(--accent);
+      background: var(--accent-soft); padding: 4px 11px; border-radius: 999px;
+    }
+    .links a:hover { text-decoration: none; filter: brightness(.97); }
+
+    /* Sections */
+    section { margin-top: 30px; }
+    h2 {
+      font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .13em;
+      font-size: .82rem; font-weight: 700; color: var(--accent);
+      margin: 0 0 16px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    }
+    .statement { font-size: 1.02rem; margin: 0; }
+
+    .entry { display: grid; grid-template-columns: 120px 1fr; gap: 18px; margin-bottom: 18px; break-inside: avoid; }
+    .entry:last-child { margin-bottom: 0; }
+    .when { color: var(--muted); font-size: .86rem; padding-top: 2px; }
+    .what h3 { font-family: var(--font-sans); font-size: 1.02rem; font-weight: 600; margin: 0; }
+    .what .org { color: var(--muted); font-size: .92rem; margin: 2px 0 0; }
+    .what ul { margin: 8px 0 0; padding-left: 1.1em; }
+    .what li { margin-bottom: 5px; color: var(--text); }
+    .what li::marker { color: var(--accent); }
+
+    /* Publications */
+    .pub { margin-bottom: 16px; break-inside: avoid; }
+    .pub .ttl { font-weight: 600; }
+    .pub .meta { color: var(--muted); font-size: .92rem; }
+    .pub .meta em { font-style: italic; }
+    .pub strong.me { color: var(--text); }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .skills h3 { font-size: .92rem; margin: 0 0 8px; color: var(--text); }
+    .skills dl { margin: 0; display: grid; gap: 8px; }
+    .skills dt { font-weight: 600; font-size: .92rem; }
+    .skills dd { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    @media (max-width: 620px) {
+      .entry { grid-template-columns: 1fr; gap: 4px; }
+      .when { padding-top: 0; }
+      .skills { grid-template-columns: 1fr; }
+    }
+
+    /* Print → clean PDF */
+    @media print {
+      :root {
+        --bg: #fff; --paper: #fff; --text: #15171b; --muted: #444b54;
+        --border: #c9ccd2; --accent: #213a9c; --accent-soft: #eef1fd;
+        color-scheme: light;
+      }
+      html, body { background: #fff; }
+      .toolbar { display: none !important; }
+      .page { max-width: none; margin: 0; border: none; border-radius: 0; box-shadow: none; padding: 0; }
+      body { font-size: 10.5pt; line-height: 1.45; }
+      a { color: var(--accent); }
+      h2, .cv-head, .links a, .what li::marker {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      section { margin-top: 16pt; }
+      .entry, .pub { margin-bottom: 9pt; }
+      @page { margin: 1.4cm 1.5cm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <a href="index.html">← Back to site</a>
+    <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <article class="page">
+    <header class="cv-head">
+      <h1>Matthew P. Szuromi</h1>
+      <p class="subtitle">Doctoral Student · Theoretical &amp; Computational Neuroscience</p>
+      <p class="contact">
+        <span>Boston, MA</span>
+        <a href="mailto:mszuromi@bu.edu">mszuromi@bu.edu</a>
+        <a href="https://mszuromi.github.io" target="_blank" rel="noopener">mszuromi.github.io</a>
+      </p>
+      <p class="links">
+        <a href="https://scholar.google.com/citations?user=xPtXfUQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://orcid.org/0009-0007-3943-7612" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://github.com/mszuromi" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/matthew-szuromi-396865171/" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </header>
+
+    <section>
+      <h2>Research Statement</h2>
+      <p class="statement">
+        Seeking to apply deep tools from mathematics and theoretical physics to hard problems in
+        computational and theoretical neuroscience — translating rigorous, first-principles thinking
+        into practical tools and theories.
+      </p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="when">2023 – Present</div>
+        <div class="what">
+          <h3>Ph.D., Computational Neuroscience</h3>
+          <p class="org">Boston University · Graduate Program in Neuroscience</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2016 – 2021</div>
+        <div class="what">
+          <h3>B.S., Pure Mathematics &amp; Physics</h3>
+          <p class="org">University of Michigan · College of Literature, Science &amp; the Arts</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Publications</h2>
+      <div class="pub">
+        <p class="ttl">Modelling dysfunction-specific interventions for seizure termination in epilepsy</p>
+        <p class="meta">Kamaraj AK &amp; <strong class="me">Szuromi MP</strong> (2025). <em>npj Systems Biology and Applications</em>. <a href="https://doi.org/10.1038/s41540-025-00632-9" target="_blank" rel="noopener">doi:10.1038/s41540-025-00632-9</a></p>
+      </div>
+      <div class="pub">
+        <p class="ttl">Dynamotypes for Dummies: A Toolbox, Atlas, and Tutorial for Simulating a Comprehensive Range of Realistic Synthetic Seizures</p>
+        <p class="meta">Sheckler C, Kish K, Walker Z, Barkelew G, Crisp DN, <strong class="me">Szuromi MP</strong>, Saggio ML &amp; Stacey WC (2025). <em>eNeuro</em>, 12(10), ENEURO.0200-25.2025. <a href="https://doi.org/10.1523/ENEURO.0200-25.2025" target="_blank" rel="noopener">doi:10.1523/ENEURO.0200-25.2025</a></p>
+      </div>
+      <div class="pub">
+        <p class="ttl">Optimization of ictal aborting stimulation using the dynamotype taxonomy</p>
+        <p class="meta"><strong class="me">Szuromi MP</strong>, Jirsa VK &amp; Stacey WC (2023). <em>Journal of Computational Neuroscience</em>, 51, 445–462. <a href="https://doi.org/10.1007/s10827-023-00859-7" target="_blank" rel="noopener">doi:10.1007/s10827-023-00859-7</a></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Research Experience</h2>
+      <div class="entry">
+        <div class="when">2024 – Present</div>
+        <div class="what">
+          <h3>Ocker Lab — Boston University</h3>
+          <p class="org">Advisor: Dr. Gabriel Ocker</p>
+          <ul>
+            <li>Building a symbolic–numerical pipeline for automated Feynman-diagram evaluation in nonlinear stochastic differential equations, including a novel proof of a generic loop-diagram counting algorithm</li>
+            <li>Developing a statistical field theory for cell-type-specific stochastic spiking neural networks with correlated inputs</li>
+            <li>Modelling thalamo-cortical network development with spike-timing-dependent plasticity during critical periods for primary sensory cortices</li>
+            <li>Studying stochastic state transitions in spiking networks with spike resets</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2023 – Present</div>
+        <div class="what">
+          <h3>Chu–Kramer Lab — Boston University &amp; Johns Hopkins</h3>
+          <p class="org">Advisors: Dr. Catherine Chu &amp; Dr. Mark Kramer</p>
+          <ul>
+            <li>Developing a machine-learning approach to detect hippocampal sharp-wave ripples in human stereo-EEG recordings</li>
+            <li>Studying the relation between hippocampal sharp-wave ripple activity and memory consolidation in humans</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2023 – Present</div>
+        <div class="what">
+          <h3>Independent Research</h3>
+          <ul>
+            <li>Developing low-dimensional neural mass models as practical analytic tools for studying multi-state nonlinear systems, with application to epilepsy and neural dysfunction</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2024</div>
+        <div class="what">
+          <h3>Han Lab — Boston University</h3>
+          <p class="org">Advisor: Dr. Xue Han</p>
+          <ul>
+            <li>Developed an improved action-potential detector for in-vivo voltage-imaging datasets</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2020 – 2023</div>
+        <div class="what">
+          <h3>Stacey Lab — University of Michigan</h3>
+          <p class="org">Advisor: Dr. William Stacey</p>
+          <ul>
+            <li>Developed theoretical understanding of inconsistent efficacy of stimulatory treatments in epilepsy</li>
+            <li>Developed a model of seizure dynamics to understand E/I imbalance at seizure onset</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2019 – 2020</div>
+        <div class="what">
+          <h3>Levin Lab — University of Michigan</h3>
+          <p class="org">Advisor: Dr. Daniel Levin</p>
+          <ul>
+            <li>Determined properties of photomultiplier tubes for use in particle detectors</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Mathematical</h3>
+          <dl>
+            <dt>Nonlinear dynamics</dt><dd>Bifurcation theory, timescale separation, coarse-graining</dd>
+            <dt>Stochastic dynamics</dt><dd>SDEs, point processes, statistical field theory (path-integral methods)</dd>
+            <dt>Graph theory</dt><dd>Graph-enumeration algorithms</dd>
+            <dt>Analysis</dt><dd>Real &amp; functional analysis (Volterra-kernel representations of local learning rules)</dd>
+            <dt>Statistics &amp; data</dt><dd>Time-series analysis, spectral estimation, GLMs, HMMs</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Computational</h3>
+          <dl>
+            <dt>Programming</dt><dd>Python, MATLAB, Mathematica, C++, LaTeX, Linux/Unix</dd>
+            <dt>Libraries</dt><dd>NumPy, SciPy, SymPy, Matplotlib, PyTorch</dd>
+            <dt>Packages</dt><dd>NEST, bdtoolbox, MatCont, FOOOF, CERN ROOT</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Presentations &amp; Lectures</h2>
+      <div class="entry">
+        <div class="when">2025</div>
+        <div class="what">
+          <h3>Controlling and Probing Seizure Dynamotypes</h3>
+          <p class="org">Minisymposium · Computational Neuroscience (CNS 2025)</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2023</div>
+        <div class="what">
+          <h3>Optimization of Ictal Aborting Stimulation</h3>
+          <p class="org">Minisymposium · SIAM Dynamical Systems (DS23)</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2022</div>
+        <div class="what">
+          <h3>Optimization of Ictal Aborting Stimulation</h3>
+          <p class="org">Selected talk · International Conference for Technology and Analysis of Seizures (ICTALS)</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2022</div>
+        <div class="what">
+          <h3>Optimization of Ictal Aborting Stimulation</h3>
+          <p class="org">Invited talk · University of Michigan Neural Networks Journal Club</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Teaching</h2>
+      <div class="entry">
+        <div class="when">2022</div>
+        <div class="what">
+          <h3>Private Tutor</h3>
+          <ul>
+            <li>Taught Linear Algebra (proofs &amp; applications) one-on-one online; developed practice problems</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2019</div>
+        <div class="what">
+          <h3>Tutor — ACE Tutor Zone, Ann Arbor, MI</h3>
+          <ul>
+            <li>Taught Calculus I/II, elementary mechanics, AP Calculus &amp; Physics, and SAT/ACT Math to individuals and small groups</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2018 – 2019</div>
+        <div class="what">
+          <h3>Undergraduate Tutor — University of Michigan</h3>
+          <ul>
+            <li>Tutored Calculus I/II and elementary mechanics one-on-one</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>References</h2>
+      <p class="statement">Available upon request.</p>
+    </section>
+  </article>
+</body>
+</html>
