@@ -9,12 +9,12 @@ Live (once deployed): <https://mszuromi.github.io>
 
 | File | What it is |
 |------|------------|
-| `index.html` | Home / About page. |
+| `index.html` | Home page — animated cortical-column hero (canvas) + an About section. |
 | `research.html` | Research areas, each with its related publications. |
-| `cv.html` | Full CV — also the source for the downloadable PDF. |
+| `cv.html` | Full CV — cosmic on screen, clean light for print; source for the PDF. |
 | `aboutme.html` | "About Me" — personal interests page. |
-| `styles.css` | Shared styles for every page (light + dark themes). |
-| `script.js` | Theme toggle + mobile menu. |
+| `styles.css` | Shared cosmic theme (dark, gold ink, serif) for every page. |
+| `script.js` | Mobile menu + footer year. |
 | `assets/favicon.svg` | "MS" monogram favicon. |
 | `assets/Matthew_Szuromi_CV.pdf` | Generated from `cv.html` (see below). |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is (skip Jekyll). |
@@ -26,21 +26,21 @@ The header/nav is duplicated in each page (no build step); if you change a nav
 link, update it in `index.html`, `research.html`, `aboutme.html`, and the
 toolbar in `cv.html`.
 
-- **Bio / About:** the `<section class="hero">` block in `index.html`.
+- **Bio / About:** the `<section class="about-section">` block in `index.html` (below the hero).
 - **Research areas + their publications:** the `<article class="card">` blocks in
   `research.html` — each paper lives inside the area it belongs to.
 - **CV:** `cv.html` (then regenerate the PDF — see below).
 - **About Me:** `aboutme.html`.
 - **Colors / fonts:** the `:root` variables at the top of `styles.css`.
 
-### Add a real headshot
+### The home animation
 
-1. Drop a square image at `assets/headshot.jpg` (≈ 600×600 px looks crisp).
-2. In `index.html`, find the `<div class="avatar">` block and replace the
-   `<span>MS</span>` with:
-   ```html
-   <img src="assets/headshot.jpg" alt="Matthew Szuromi" />
-   ```
+The hero is a live cortical column rendered on a `<canvas>` — pyramidal and
+stellate neurons in cortical layers, with sparse excitatory (gold) and inhibitory
+(cyan) spiking. Moving the cursor through it excites nearby neurons (an
+undocumented easter egg). It all lives in the `<script>` at the bottom of
+`index.html`; the firing behaviour is just numbers (base accrual, cursor strength,
+coupling, refractory) in the `step()` and `fire()` functions.
 
 ### Regenerate the CV PDF
 

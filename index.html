@@ -4,60 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Matthew Szuromi — Computational Neuroscience</title>
-  <meta name="description" content="Matthew Szuromi is a PhD student in computational and theoretical neuroscience at Boston University, using statistical field theory and stochastic dynamics to study spiking neural networks, synaptic plasticity, memory, and epilepsy." />
+  <meta name="description" content="Matthew Szuromi is a PhD student in computational and theoretical neuroscience at Boston University, using mathematics and theoretical physics to study spiking neural networks, neural data, memory, and epilepsy." />
   <meta name="author" content="Matthew Szuromi" />
   <link rel="canonical" href="https://mszuromi.github.io/" />
-
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mszuromi.github.io/" />
   <meta property="og:title" content="Matthew Szuromi — Computational Neuroscience" />
   <meta property="og:description" content="PhD student in computational and theoretical neuroscience at Boston University." />
   <meta name="twitter:card" content="summary" />
-
-  <meta name="theme-color" content="#fcfcfa" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)" />
-
+  <meta name="theme-color" content="#06050d" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/favicon.svg" />
-
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-      } catch (e) {}
-    })();
-  </script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Matthew Szuromi",
-    "givenName": "Matthew",
-    "familyName": "Szuromi",
-    "email": "mailto:mszuromi@bu.edu",
-    "jobTitle": "PhD Student, Computational Neuroscience",
-    "affiliation": { "@type": "CollegeOrUniversity", "name": "Boston University" },
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Michigan" },
-    "url": "https://mszuromi.github.io/",
-    "sameAs": [
-      "https://scholar.google.com/citations?user=xPtXfUQAAAAJ&hl=en",
-      "https://orcid.org/0009-0007-3943-7612",
-      "https://github.com/mszuromi",
-      "https://www.linkedin.com/in/matthew-szuromi-396865171/"
-    ]
-  }
-  </script>
+  <style>
+    #sky{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0}
+    .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+      background:linear-gradient(105deg, rgba(6,5,13,.92) 0%, rgba(6,5,13,.72) 32%, rgba(6,5,13,.28) 60%, rgba(6,5,13,0) 88%)}
+    .page{position:relative;z-index:2}
+    .home-hero{min-height:100vh;display:flex;align-items:center;position:relative}
+    .hero-inner{width:100%}
+    .home-hero .eyebrow{font-size:1.2rem;margin-bottom:18px}
+    .home-hero h1{font-size:clamp(3.6rem,9.5vw,7.6rem);line-height:.95;margin:0 0 12px}
+    .home-hero .role{font-size:1.18rem;color:var(--muted);margin:0 0 24px}
+    .home-hero .role a{color:var(--cream)}
+    .home-hero .lede{font-size:clamp(1.18rem,2.1vw,1.5rem);line-height:1.5;max-width:34ch;color:#d8cbac;margin:0 0 36px}
+    .home-hero .cta-row{margin-top:0}
+    .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted);opacity:.7;animation:bob 2.4s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+    @media (prefers-reduced-motion:reduce){.scroll-cue{animation:none}}
+    /* opaque sections slide over the fixed canvas on scroll */
+    .about-section{position:relative;z-index:2;background:radial-gradient(80% 60% at 86% 0%, rgba(58,29,110,.16), transparent 70%), var(--ink)}
+    .site-footer{position:relative;z-index:2;background:#08060f}
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#about">Skip to content</a>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="veil"></div>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
@@ -66,134 +52,303 @@
       <symbol id="i-scholar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.2V16c0 1.3 2.7 2.6 6 2.6s6-1.3 6-2.6v-4.8"/><path d="M22 9v5.5"/></symbol>
       <symbol id="i-orcid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><line x1="9.2" y1="10.6" x2="9.2" y2="16.4"/><circle cx="9.2" cy="7.9" r="0.6" fill="currentColor" stroke="none"/><path d="M12.3 10.6h2.2c2 0 3.2 1.3 3.2 2.9s-1.2 2.9-3.2 2.9h-2.2z"/></symbol>
       <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
-      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></symbol>
-      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
     </defs>
   </svg>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="Home — Matthew Szuromi">
-        <span class="brand-mark" aria-hidden="true">MS</span>
-        <span class="brand-name">Matthew&nbsp;Szuromi</span>
-      </a>
-      <nav class="nav" id="nav" aria-label="Primary">
-        <a href="index.html" class="active" aria-current="page">Home</a>
-        <a href="research.html">Research</a>
-        <a href="cv.html">CV</a>
-        <a href="aboutme.html">About Me</a>
-      </nav>
-      <div class="header-actions">
-        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <svg class="ico ico-sun" aria-hidden="true"><use href="#i-sun"/></svg>
-          <svg class="ico ico-moon" aria-hidden="true"><use href="#i-moon"/></svg>
-        </button>
-        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
-          <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-        </button>
+  <div class="page">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="index.html">Matthew&nbsp;Szuromi</a>
+        <nav class="nav" id="nav" aria-label="Primary">
+          <a href="index.html" class="active" aria-current="page">Home</a>
+          <a href="research.html">Research</a>
+          <a href="cv.html">CV</a>
+          <a href="aboutme.html">About&nbsp;Me</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+            <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main id="main">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-text">
-          <p class="eyebrow">Theoretical &amp; Computational Neuroscience</p>
-          <h1>Matthew Szuromi</h1>
+    <main>
+      <section class="home-hero">
+        <div class="wrap hero-inner">
+          <p class="eyebrow">Theoretical &amp; computational neuroscience</p>
+          <h1>Matthew<br>Szuromi</h1>
           <p class="role">PhD Student · <a href="https://www.bu.edu" target="_blank" rel="noopener">Boston University</a></p>
-
-          <p class="lede">
-            I use mathematics and theoretical physics to understand how neural systems
-            compute, learn, and break down — from the theory of spiking networks to neural
-            data, human memory, and epilepsy.
-          </p>
-
-          <div class="bio">
-            <p>
-              I'm a doctoral student in the Graduate Program for Neuroscience at Boston University.
-              I work with <a href="https://math.bu.edu/people/gkocker/" target="_blank" rel="noopener">Gabriel Ocker</a>
-              at BU, and with <a href="https://engineering.jhu.edu/faculty/mark-kramer/" target="_blank" rel="noopener">Mark Kramer</a>
-              and <a href="https://braindynamicslab.jhmi.edu/team/" target="_blank" rel="noopener">Catherine Chu</a>
-              in the <a href="https://braindynamicslab.jhmi.edu/" target="_blank" rel="noopener">BRAIN Dynamics Lab</a>
-              at Johns Hopkins.
-            </p>
-            <p>
-              I grew up in Rochester, NY, and studied pure mathematics and physics at the University of
-              Michigan, where I did research in experimental particle physics. Before starting my PhD
-              in 2023, I spent two years as a research technician in William Stacey's lab at Michigan's
-              Biointerfaces Institute, building phenomenological models of seizure dynamics to better
-              guide stimulation therapies for drug-resistant epilepsy.
-            </p>
-            <p>
-              Today my work spans theoretical modeling, mathematical and computational tool building,
-              neural data analysis, human memory, and epilepsy — described in more depth on my
-              <a href="research.html">research page</a>.
-            </p>
-          </div>
-
-          <ul class="tags" aria-label="Research interests">
-            <li>Statistical field theory</li>
-            <li>Stochastic processes</li>
-            <li>Spiking neural networks</li>
-            <li>Synaptic plasticity</li>
-            <li>Nonlinear dynamics</li>
-            <li>Epilepsy &amp; seizure dynamics</li>
-          </ul>
-
+          <p class="lede">Mathematics and theoretical physics, brought to how neural systems compute, learn, and break down.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="mailto:mszuromi@bu.edu">Get in touch</a>
             <a class="btn btn-ghost" href="research.html">Read my research</a>
-            <a class="btn btn-ghost" href="cv.html">View CV</a>
           </div>
         </div>
+        <a class="scroll-cue" href="#about" aria-label="Scroll to about"><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg></a>
+      </section>
 
-        <aside class="hero-aside" aria-label="At a glance">
-          <div class="avatar" role="img" aria-label="Portrait placeholder with the initials M S">
-            <span>MS</span>
-            <!-- To use a real photo: drop assets/headshot.jpg, then replace the <span> above with:
-                 <img src="assets/headshot.jpg" alt="Matthew Szuromi" /> -->
+      <section class="section about-section" id="about">
+        <div class="wrap">
+          <header class="section-head">
+            <p class="eyebrow">About</p>
+            <h2>A bit about me</h2>
+          </header>
+          <div class="about-grid">
+            <div class="bio">
+              <p>
+                I'm a doctoral student in the Graduate Program for Neuroscience at Boston University.
+                I work with <a href="https://math.bu.edu/people/gkocker/" target="_blank" rel="noopener">Gabriel Ocker</a>
+                at BU, and with <a href="https://engineering.jhu.edu/faculty/mark-kramer/" target="_blank" rel="noopener">Mark Kramer</a>
+                and <a href="https://braindynamicslab.jhmi.edu/team/" target="_blank" rel="noopener">Catherine Chu</a>
+                in the <a href="https://braindynamicslab.jhmi.edu/" target="_blank" rel="noopener">BRAIN Dynamics Lab</a> at Johns Hopkins.
+              </p>
+              <p>
+                I grew up in Rochester, NY, and studied pure mathematics and physics at the University of
+                Michigan, where I did research in experimental particle physics. Before starting my PhD in
+                2023, I spent two years as a research technician in William Stacey's lab at Michigan's
+                Biointerfaces Institute, building phenomenological models of seizure dynamics to better
+                guide stimulation therapies for drug-resistant epilepsy.
+              </p>
+              <p>
+                Today my work spans theoretical modeling, mathematical and computational tool building,
+                neural data analysis, human memory, and epilepsy — described in more depth on my
+                <a href="research.html">research page</a>.
+              </p>
+              <ul class="tags" aria-label="Research interests">
+                <li>Statistical field theory</li>
+                <li>Stochastic processes</li>
+                <li>Spiking neural networks</li>
+                <li>Synaptic plasticity</li>
+                <li>Nonlinear dynamics</li>
+                <li>Epilepsy &amp; seizure dynamics</li>
+              </ul>
+            </div>
+            <aside>
+              <dl class="facts">
+                <div><dt>Focus</dt><dd>Computational &amp; theoretical neuroscience</dd></div>
+                <div><dt>Labs</dt><dd><a href="https://math.bu.edu/people/gkocker/" target="_blank" rel="noopener">Ocker Lab</a>, <a href="https://braindynamicslab.jhmi.edu/" target="_blank" rel="noopener">BRAIN Dynamics Lab</a></dd></div>
+                <div><dt>Based in</dt><dd>Boston, MA</dd></div>
+              </dl>
+              <ul class="social" aria-label="Profiles and links" style="margin-top:26px">
+                <li><a href="mailto:mszuromi@bu.edu" aria-label="Email"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
+                <li><a href="https://scholar.google.com/citations?user=xPtXfUQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg></a></li>
+                <li><a href="https://orcid.org/0009-0007-3943-7612" target="_blank" rel="noopener" aria-label="ORCID"><svg class="ico" aria-hidden="true"><use href="#i-orcid"/></svg></a></li>
+                <li><a href="https://github.com/mszuromi" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a></li>
+                <li><a href="https://www.linkedin.com/in/matthew-szuromi-396865171/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+              </ul>
+            </aside>
           </div>
-          <dl class="facts">
-            <div><dt>Focus</dt><dd>Computational &amp; theoretical neuroscience</dd></div>
-            <div><dt>Labs</dt><dd>
-              <a href="https://math.bu.edu/people/gkocker/" target="_blank" rel="noopener">Ocker Lab</a>,
-              <a href="https://braindynamicslab.jhmi.edu/" target="_blank" rel="noopener">BRAIN Dynamics Lab</a>
-            </dd></div>
-            <div><dt>Based in</dt><dd>Boston, MA</dd></div>
-          </dl>
-          <ul class="social" aria-label="Profiles and links">
-            <li><a href="mailto:mszuromi@bu.edu" aria-label="Email"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
-            <li><a href="https://scholar.google.com/citations?user=xPtXfUQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg></a></li>
-            <li><a href="https://orcid.org/0009-0007-3943-7612" target="_blank" rel="noopener" aria-label="ORCID"><svg class="ico" aria-hidden="true"><use href="#i-orcid"/></svg></a></li>
-            <li><a href="https://github.com/mszuromi" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a></li>
-            <li><a href="https://www.linkedin.com/in/matthew-szuromi-396865171/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-  </main>
+        </div>
+      </section>
+    </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <div class="footer-contact">
-        <p class="footer-name">Matthew Szuromi</p>
-        <p class="muted">Boston, MA · <a href="mailto:mszuromi@bu.edu">mszuromi@bu.edu</a></p>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-contact">
+          <p class="footer-name">Matthew Szuromi</p>
+          <p class="muted">Boston, MA · <a href="mailto:mszuromi@bu.edu">mszuromi@bu.edu</a></p>
+        </div>
+        <ul class="social" aria-label="Profiles and links">
+          <li><a href="mailto:mszuromi@bu.edu" aria-label="Email"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
+          <li><a href="https://scholar.google.com/citations?user=xPtXfUQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg></a></li>
+          <li><a href="https://orcid.org/0009-0007-3943-7612" target="_blank" rel="noopener" aria-label="ORCID"><svg class="ico" aria-hidden="true"><use href="#i-orcid"/></svg></a></li>
+          <li><a href="https://github.com/mszuromi" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/in/matthew-szuromi-396865171/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+        </ul>
       </div>
-      <ul class="social" aria-label="Profiles and links">
-        <li><a href="mailto:mszuromi@bu.edu" aria-label="Email"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
-        <li><a href="https://scholar.google.com/citations?user=xPtXfUQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg></a></li>
-        <li><a href="https://orcid.org/0009-0007-3943-7612" target="_blank" rel="noopener" aria-label="ORCID"><svg class="ico" aria-hidden="true"><use href="#i-orcid"/></svg></a></li>
-        <li><a href="https://github.com/mszuromi" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a></li>
-        <li><a href="https://www.linkedin.com/in/matthew-szuromi-396865171/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
-      </ul>
-    </div>
-    <div class="wrap footer-fine">
-      <p class="muted">© <span id="year">2026</span> Matthew Szuromi</p>
-    </div>
-  </footer>
+      <div class="wrap footer-fine">
+        <p class="muted">© <span id="year">2026</span> Matthew Szuromi</p>
+      </div>
+    </footer>
+  </div>
 
-  <script src="script.js"></script>
+<script>
+(function(){
+  var cvs=document.getElementById('sky'), ctx=cvs.getContext('2d');
+  var W,H,DPR,SS=2, frame=0;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var GOLD='226,184,120', WGOLD='255,242,210', INH='90,200,228', WINH='196,240,252';
+  var neurons=[], edges=[], pending=[], stars=[], neb=null, base=null;
+  var mouse={x:-9999,y:-9999,on:false,t:-999};
+  function R(a,b){return a+Math.random()*(b-a);}
+
+  function fit(){
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=window.innerWidth; H=window.innerHeight;
+    cvs.style.width=W+'px'; cvs.style.height=H+'px';
+    cvs.width=W*DPR; cvs.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  function grow(x,y,ang,len,w,depth,segs,bb){
+    if(depth<=0||len<3) return;
+    var ex=x+Math.cos(ang)*len, ey=y+Math.sin(ang)*len;
+    var mx=(x+ex)/2,my=(y+ey)/2, perp=ang+Math.PI/2, off=R(-1,1)*len*0.26;
+    var cx=mx+Math.cos(perp)*off, cy=my+Math.sin(perp)*off;
+    segs.push({x1:x,y1:y,cx:cx,cy:cy,x2:ex,y2:ey,w:w});
+    bb.mnx=Math.min(bb.mnx,x,ex,cx);bb.mny=Math.min(bb.mny,y,ey,cy);bb.mxx=Math.max(bb.mxx,x,ex,cx);bb.mxy=Math.max(bb.mxy,y,ey,cy);
+    var nb = depth>1 ? (Math.random()<.86?2:1) : 1;
+    for(var i=0;i<nb;i++){
+      var na=ang+(nb>1?(i?0.45:-0.45):0)*R(.6,1)+R(-.2,.2);
+      grow(ex,ey,na,len*R(.66,.8),w*0.68,depth-1,segs,bb);
+    }
+  }
+  function pyramidal(scale, apicalLen){
+    var segs=[], bb={mnx:0,mny:0,mxx:0,mxy:0};
+    var x=0,y=0,w=2.1*scale,segL=13*scale,steps=Math.max(3,Math.round(apicalLen/segL)),ang=-Math.PI/2;
+    for(var i=0;i<steps;i++){
+      var na=ang+R(-.09,.09), ex=x+Math.cos(na)*segL, ey=y+Math.sin(na)*segL;
+      var mx=(x+ex)/2,my=(y+ey)/2,perp=na+Math.PI/2,off=R(-1,1)*segL*0.16;
+      segs.push({x1:x,y1:y,cx:mx+Math.cos(perp)*off,cy:my+Math.sin(perp)*off,x2:ex,y2:ey,w:w});
+      bb.mnx=Math.min(bb.mnx,x,ex);bb.mny=Math.min(bb.mny,y,ey);bb.mxx=Math.max(bb.mxx,x,ex);bb.mxy=Math.max(bb.mxy,y,ey);
+      if(i>1 && i<steps-1 && Math.random()<.66) grow(ex,ey,na+(Math.random()<.5?1:-1)*R(.7,1.1), segL*R(1.1,1.8), w*.62,3,segs,bb);
+      x=ex;y=ey;w*=0.93;ang=na;
+    }
+    var tuft=Math.round(R(4,6));
+    for(var t=0;t<tuft;t++) grow(x,y,-Math.PI/2+R(-1,1)*0.95, segL*R(1.4,2.3), w*1.25, 4, segs, bb);
+    var nb=Math.round(R(5,7));
+    for(var b=0;b<nb;b++) grow(0,0, R(0.28,Math.PI-0.28), segL*R(1.6,2.5), 1.55*scale, 4, segs, bb);
+    return {segs:segs,bb:bb,soma:'pyr',sc:scale};
+  }
+  function stellate(scale){
+    var segs=[],bb={mnx:0,mny:0,mxx:0,mxy:0}, n=Math.round(R(7,10));
+    for(var i=0;i<n;i++) grow(0,0, i/n*6.2832+R(-.3,.3), 11*scale*R(1.1,1.7), 1.4*scale, 4, segs, bb);
+    return {segs:segs,bb:bb,soma:'stel',sc:scale};
+  }
+  function sprite(ar, glow, ink, bright){
+    var bb=ar.bb, pad=glow?24:9, w=(bb.mxx-bb.mnx)+pad*2, h=(bb.mxy-bb.mny)+pad*2;
+    var c=document.createElement('canvas'); c.width=Math.ceil(w*SS); c.height=Math.ceil(h*SS);
+    var g=c.getContext('2d'); g.scale(SS,SS); g.translate(pad-bb.mnx, pad-bb.mny); g.lineCap='round'; g.lineJoin='round';
+    if(glow){ g.shadowColor='rgba('+bright+',.9)'; g.shadowBlur=8; }
+    for(var i=0;i<ar.segs.length;i++){ var s=ar.segs[i];
+      var al = glow?0.8:Math.max(.26,Math.min(.78,.3+s.w*.24));
+      g.strokeStyle='rgba('+(glow?bright:ink)+','+al+')'; g.lineWidth=s.w*(glow?1.8:1);
+      g.beginPath(); g.moveTo(s.x1,s.y1); g.quadraticCurveTo(s.cx,s.cy,s.x2,s.y2); g.stroke();
+    }
+    g.shadowBlur=0; var sc=ar.sc;
+    g.fillStyle='rgba('+bright+',1)';
+    if(ar.soma==='pyr'){ g.beginPath(); g.moveTo(0,-4.4*sc); g.lineTo(3.5*sc,3.2*sc); g.lineTo(-3.5*sc,3.2*sc); g.closePath(); g.fill(); }
+    else { g.beginPath(); g.arc(0,0,3*sc,0,6.2832); g.fill(); }
+    return {c:c, ox:(pad-bb.mnx), oy:(pad-bb.mny), w:c.width/SS, h:c.height/SS};
+  }
+  function buildNebula(){
+    var c=document.createElement('canvas'); c.width=W*DPR; c.height=H*DPR;
+    var g=c.getContext('2d'); g.scale(DPR,DPR);
+    g.fillStyle='#06050d'; g.fillRect(0,0,W,H);
+    var blobs=[[0.74,0.34,'58,29,110'],[0.86,0.66,'110,31,85'],[0.52,0.2,'26,33,96'],[0.66,0.8,'15,58,68'],[0.93,0.46,'120,60,40']];
+    for(var i=0;i<blobs.length;i++){ var b=blobs[i], gx=b[0]*W, gy=b[1]*H, rr=Math.max(W,H)*R(.36,.52);
+      var gr=g.createRadialGradient(gx,gy,0,gx,gy,rr); gr.addColorStop(0,'rgba('+b[2]+',0.5)'); gr.addColorStop(1,'rgba('+b[2]+',0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H); }
+    for(var s=0;s<420;s++){ var x=Math.random()*W,y=Math.random()*H,r=Math.random()<.92?R(.3,1):R(1,1.8);
+      var a=R(.15,.7), tone=Math.random()<.7?'255,246,224':'205,190,255';
+      g.fillStyle='rgba('+tone+','+a+')'; g.beginPath(); g.arc(x,y,r,0,6.2832); g.fill(); }
+    return c;
+  }
+  function layout(){
+    fit(); frame=0; neb=buildNebula();
+    neurons=[]; edges=[]; pending=[]; stars=[];
+    var L=[
+      {y0:0.00,y1:0.085,t:'stel',n:Math.round(W/180)+2,sc:[.32,.5]},
+      {y0:0.11,y1:0.33, t:'pyr', n:Math.round(W/80),   sc:[.5,.72], ap:[0.10,0.18]},
+      {y0:0.35,y1:0.47, t:'stel',n:Math.round(W/100),  sc:[.42,.62]},
+      {y0:0.50,y1:0.70, t:'pyr', n:Math.round(W/135),  sc:[.8,1.12], ap:[0.34,0.46]},
+      {y0:0.73,y1:0.90, t:'pyr', n:Math.round(W/140),  sc:[.55,.8],  ap:[0.18,0.28]}
+    ];
+    for(var li=0;li<L.length;li++){ var ly=L[li];
+      for(var k=0;k<ly.n;k++){
+        var sc=R(ly.sc[0],ly.sc[1]);
+        var ar = ly.t==='pyr' ? pyramidal(sc, R(ly.ap[0],ly.ap[1])*H) : stellate(sc);
+        neurons.push({x:R(0.03,0.99)*W, y:R(ly.y0,ly.y1)*H, base:sprite(ar,false,GOLD,WGOLD), glow:sprite(ar,true,GOLD,WGOLD),
+          q:R(0,.6), act:0, cool:0, dim:0.45+sc*0.45, type:'e', fcol:WGOLD});
+      }
+    }
+    var nI=Math.round(neurons.length*0.22);
+    for(var ii=0;ii<nI;ii++){
+      var isc=R(.4,.62), iar=stellate(isc);
+      neurons.push({x:R(0.04,0.98)*W, y:R(0.12,0.9)*H, base:sprite(iar,false,INH,WINH), glow:sprite(iar,true,INH,WINH),
+        q:R(0,.6), act:0, cool:0, dim:0.72+isc*0.32, type:'i', fcol:WINH});
+    }
+    for(var i=0;i<neurons.length;i++){
+      var d=[];
+      for(var j=0;j<neurons.length;j++) if(j!==i){ var dx=neurons[j].x-neurons[i].x, dy=neurons[j].y-neurons[i].y; d.push({j:j,d2:dx*dx+dy*dy}); }
+      d.sort(function(a,b){return a.d2-b.d2;});
+      var deg=2+(Math.random()<.45?1:0);
+      for(var m=0;m<deg&&m<d.length;m++){ var j2=d[m].j;
+        if(!edges.some(function(e){return (e.a===i&&e.b===j2)||(e.a===j2&&e.b===i);})){
+          var A=neurons[i],B=neurons[j2],mx=(A.x+B.x)/2,my=(A.y+B.y)/2,ang=Math.atan2(B.y-A.y,B.x-A.x)+Math.PI/2,off=R(-1,1)*Math.sqrt(d[m].d2)*0.12;
+          edges.push({a:i,b:j2,cx:mx+Math.cos(ang)*off,cy:my+Math.sin(ang)*off,act:0,col:WGOLD});
+        }
+      }
+    }
+    for(var s=0;s<46;s++) stars.push({x:R(0,W),y:R(0,H),r:R(.4,1.2),ph:R(0,6.28)});
+    for(var z=0;z<4;z++){ var zi=Math.floor(Math.random()*neurons.length); neurons[zi].q=R(.96,1); neurons[zi].cool=R(0,45); }
+    bake();
+  }
+  function bake(){
+    base=document.createElement('canvas'); base.width=W*DPR; base.height=H*DPR;
+    var g=base.getContext('2d'); g.scale(DPR,DPR);
+    g.drawImage(neb,0,0,W,H); g.lineCap='round';
+    for(var e=0;e<edges.length;e++){ var E=edges[e],A=neurons[E.a],B=neurons[E.b];
+      g.strokeStyle='rgba('+GOLD+',0.07)'; g.lineWidth=0.7; g.beginPath(); g.moveTo(A.x,A.y); g.quadraticCurveTo(E.cx,E.cy,B.x,B.y); g.stroke(); }
+    for(var i=0;i<neurons.length;i++){ var n=neurons[i]; g.globalAlpha=n.dim; g.drawImage(n.base.c,n.x-n.base.ox,n.y-n.base.oy,n.base.w,n.base.h); g.globalAlpha=1; }
+  }
+  function fire(i){
+    var n=neurons[i]; n.act=1; n.q=0; n.cool=R(70,130);
+    var w = n.type==='i' ? -0.26 : 0.12;
+    for(var e=0;e<edges.length;e++){ var E=edges[e];
+      if(E.a===i||E.b===i){ E.act=1; E.col=n.fcol; pending.push({to:(E.a===i?E.b:E.a), w:w, at:frame+Math.round(R(16,30))}); } }
+  }
+  function step(){
+    frame++;
+    var mi = mouse.on ? Math.max(0, 1-(frame-mouse.t)/50) : 0;
+    for(var i=0;i<neurons.length;i++){ var n=neurons[i];
+      n.q += (n.type==='i'?0.00032:0.0002)+Math.random()*0.0002; if(n.act>0) n.act*=0.95; if(n.cool>0) n.cool--;
+      if(mi>0){
+        n.q += 0.0006*mi;
+        var dx=n.x-mouse.x, dy=n.y-mouse.y, md=Math.sqrt(dx*dx+dy*dy);
+        if(md<190){ var f=1-md/190; n.q += f*f*0.13*mi; }
+      }
+      if(n.q>=1 && n.cool<=0) fire(i);
+    }
+    for(var e=0;e<edges.length;e++) if(edges[e].act>0) edges[e].act*=0.9;
+    for(var p=pending.length-1;p>=0;p--) if(pending[p].at<=frame){ var tn=neurons[pending[p].to]; tn.q += pending[p].w; if(tn.q<-0.5) tn.q=-0.5; pending.splice(p,1); }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H); ctx.drawImage(base,0,0,W,H);
+    ctx.globalCompositeOperation='lighter';
+    for(var s=0;s<stars.length;s++){ var st=stars[s], a=0.22+0.4*(0.5+0.5*Math.sin(frame*0.03+st.ph));
+      ctx.fillStyle='rgba(255,246,224,'+a+')'; ctx.beginPath(); ctx.arc(st.x,st.y,st.r,0,6.2832); ctx.fill(); }
+    ctx.globalCompositeOperation='source-over'; ctx.lineCap='round';
+    for(var e=0;e<edges.length;e++){ var E=edges[e]; if(E.act>0.03){ var A=neurons[E.a],B=neurons[E.b];
+      ctx.strokeStyle='rgba('+(E.col||WGOLD)+','+(E.act*0.5)+')'; ctx.lineWidth=0.8+E.act*1.1;
+      ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.quadraticCurveTo(E.cx,E.cy,B.x,B.y); ctx.stroke(); } }
+    ctx.globalCompositeOperation='lighter';
+    for(var i=0;i<neurons.length;i++){ var n=neurons[i]; if(n.act>0.03){ ctx.globalAlpha=Math.min(1,n.act);
+      ctx.drawImage(n.glow.c, n.x-n.glow.ox, n.y-n.glow.oy, n.glow.w, n.glow.h); } }
+    ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+  }
+  function loop(){ step(); draw(); requestAnimationFrame(loop); }
+
+  window.addEventListener('resize', layout);
+  window.addEventListener('mousemove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.on=true; mouse.t=frame; });
+  window.addEventListener('mouseout', function(){ mouse.on=false; });
+  window.addEventListener('click', function(e){
+    if(e.clientY > window.innerHeight) return;
+    var best=-1,bd=1e9;
+    for(var i=0;i<neurons.length;i++){ var dx=neurons[i].x-e.clientX, dy=neurons[i].y-e.clientY, d=dx*dx+dy*dy; if(d<bd){bd=d;best=i;} }
+    if(best>=0 && bd<110000 && neurons[best] && neurons[best].cool<=0) fire(best);
+  });
+  cvs.addEventListener('touchmove', function(e){ var t=e.touches[0]; if(t){ mouse.x=t.clientX; mouse.y=t.clientY; mouse.on=true; mouse.t=frame; } }, {passive:true});
+
+  layout();
+  if(reduce){ for(var i=0;i<44;i++) step(); draw(); } else loop();
+
+  var y=document.getElementById('year'); if(y) y.textContent=String(new Date().getFullYear());
+  var nt=document.getElementById('nav-toggle'), nv=document.getElementById('nav');
+  if(nt&&nv){ nt.addEventListener('click', function(){ var o=nv.classList.toggle('open'); nt.setAttribute('aria-expanded', o?'true':'false'); }); }
+})();
+</script>
 </body>
 </html>

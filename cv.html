@@ -9,28 +9,28 @@
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-      --bg: #f4f2ec; --paper: #ffffff; --text: #1b1f24; --muted: #5c6671;
-      --border: #e2ded5; --accent: #2f4bd0; --accent-soft: #eef1fd;
-      color-scheme: light;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1216; --paper: #161b22; --text: #e7eaee; --muted: #99a2ad;
-        --border: #262d37; --accent: #8aa1f6; --accent-soft: #1a2438;
-        color-scheme: dark;
-      }
+      --font-sans: 'EB Garamond', Georgia, 'Times New Roman', serif;
+      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --bg: #06050d; --paper: rgba(18,14,28,.62); --text: #f3ead4; --muted: #b3a07f;
+      --border: rgba(226,184,120,.18); --accent: #e2b878; --accent-soft: rgba(226,184,120,.10);
+      color-scheme: dark;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0; background: var(--bg); color: var(--text);
-      font-family: var(--font-sans); font-size: 16px; line-height: 1.6;
+      font-family: var(--font-sans); font-size: 17.5px; line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
+    body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(60% 55% at 82% 16%, rgba(58,29,110,.34), transparent 72%),
+        radial-gradient(55% 50% at 90% 74%, rgba(110,31,85,.24), transparent 72%),
+        radial-gradient(55% 55% at 10% 84%, rgba(15,58,68,.22), transparent 72%),
+        radial-gradient(45% 45% at 8% 12%, rgba(26,33,96,.2), transparent 72%),
+        var(--bg); }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
@@ -56,9 +56,10 @@
 
     .page {
       max-width: 820px; margin: 16px auto 60px; background: var(--paper);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
       border: 1px solid var(--border); border-radius: 14px;
       padding: clamp(28px, 5vw, 56px);
-      box-shadow: 0 18px 50px -28px rgba(0,0,0,.3);
+      box-shadow: 0 30px 70px -40px rgba(0,0,0,.7);
     }
 
     /* Header */
@@ -82,7 +83,7 @@
     section { margin-top: 30px; }
     h2 {
       font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .13em;
-      font-size: .82rem; font-weight: 700; color: var(--accent);
+      font-size: .86rem; font-weight: 600; color: var(--accent);
       margin: 0 0 16px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
     }
     .statement { font-size: 1.02rem; margin: 0; }
@@ -119,11 +120,12 @@
     /* Print → clean PDF */
     @media print {
       :root {
-        --bg: #fff; --paper: #fff; --text: #15171b; --muted: #444b54;
-        --border: #c9ccd2; --accent: #213a9c; --accent-soft: #eef1fd;
+        --bg: #fff; --paper: #fff; --text: #15171b; --muted: #4a4436;
+        --border: #d8cfbf; --accent: #5e4a1e; --accent-soft: #f3ecdd;
         color-scheme: light;
       }
       html, body { background: #fff; }
+      body::before { display: none; }
       .toolbar { display: none !important; }
       .page { max-width: none; margin: 0; border: none; border-radius: 0; box-shadow: none; padding: 0; }
       body { font-size: 10.5pt; line-height: 1.45; }
